@@ -1,0 +1,72 @@
+---
+import { LINKS, type LinkGroup } from '../config/site';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  compact?: boolean;
+}
+
+const { lang, compact = false } = Astro.props;
+const groups: LinkGroup[] = ['work', 'writing', 'personal'];
+---
+
+<dl class:list={['link-groups', { compact }]}>
+  {
+    groups.map((group) => (
+      <div class="group">
+        <dt>{t(lang, `links.${group}`)}</dt>
+        <dd>
+          <ul>
+            {LINKS.filter((link) => link.group === group).map((link) => (
+              <li>
+                <a href={link.url} rel="me noopener" target="_blank">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </dd>
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  .link-groups {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+  }
+
+  .group {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    align-items: baseline;
+  }
+
+  dt {
+    font-size: 0.8rem;
+    color: var(--subtle);
+    letter-spacing: 0.04em;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    list-style: none;
+  }
+
+  .compact {
+    gap: 6px;
+  }
+
+  .compact a {
+    font-size: 0.9rem;
+  }
+</style>

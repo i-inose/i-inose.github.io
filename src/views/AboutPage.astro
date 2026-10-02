@@ -1,0 +1,279 @@
+---
+import Base from '../layouts/Base.astro';
+import { PROFILE } from '../config/profile';
+import { t, type Lang, type UIKey } from '../i18n/ui';
+import { getCareer, getSkillEvidence } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const career = await getCareer();
+const evidence = await getSkillEvidence();
+const categories = ['ai', 'dev', 'cloud', 'data'] as const;
+
+const period = (start: number, end: number | null) => `${start} – ${end ?? t(lang, 'about.present')}`;
+---
+
+<Base lang={lang} path="/about/" title={t(lang, 'about.title')} description={PROFILE.description[lang]}>
+  <h1 class="page-title">{t(lang, 'about.title')}</h1>
+
+  <section class="section intro">
+    {PROFILE.about.map((p) => <p>{p[lang]}</p>)}
+  </section>
+
+  <section class="section" id="career">
+    <h2 class="section-title">{t(lang, 'about.career')}</h2>
+    <ol class="timeline">
+      {
+        career.map((entry) => (
+          <li>
+            <p class="date">{period(entry.data.start, entry.data.end)}</p>
+            <h3 class="org">{entry.data.org[lang]}</h3>
+            {entry.data.role && <p class="role muted">{entry.data.role[lang]}</p>}
+            {entry.data.summary && <p class="summary">{entry.data.summary[lang]}</p>}
+            {entry.data.items.length > 0 && (
+              <ul class="items">
+                {entry.data.items.map((item) => (
+                  <li>
+                    <h4>{item.title[lang]}</h4>
+                    {item.notes.length > 0 && (
+                      <ul class="notes">
+                        {item.notes.map((n) => (
+                          <li>{n[lang]}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {item.tech.length > 0 && (
+                      <ul class="chips">
+                        {item.tech.map((tech) => (
+                          <li class="chip">{tech}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="section" id="skills">
+    <h2 class="section-title">{t(lang, 'about.skills')}</h2>
+    <p class="note muted">{t(lang, 'about.skillsNote')}</p>
+    {
+      categories.map((cat) => {
+        const rows = evidence.filter((e) => e.skill.data.category === cat);
+        return (
+          <div class="skill-group">
+            <h3 class="cat">{t(lang, `skills.cat.${cat}` as UIKey)}</h3>
+            <ul class="skills">
+              {rows.map(({ skill, work, publications, articles }) => (
+                <li>
+                  <details>
+                    <summary>
+                      <span class="skill-name">{skill.data.label[lang]}</span>
+                      <span class="evidence">
+                        {work.length > 0 && <span class="chip">{t(lang, 'skills.career')}</span>}
+                        {publications.some((p) => p.data.type === 'book') && (
+                          <span class="chip">{t(lang, 'skills.book')}</span>
+                        )}
+                        {publications.some((p) => p.data.type === 'paper') && (
+                          <span class="chip">{t(lang, 'skills.paper')}</span>
+                        )}
+                        {articles.length > 0 && (
+                          <span class="chip">
+                            {t(lang, 'skills.articles')} {articles.length}
+                          </span>
+                        )}
+                      </span>
+                    </summary>
+                    <ul class="evidence-list">
+                      {work.map((w) => (
+                        <li>
+                          <span class="kind">{t(lang, 'skills.career')}</span>
+                          <a href="#career">{w.title[lang]}</a>
+                        </li>
+                      ))}
+                      {publications.map((p) => (
+                        <li>
+                          <span class="kind">{t(lang, p.data.type === 'book' ? 'skills.book' : 'skills.paper')}</span>
+                          <a href={p.data.url} target="_blank" rel="noopener">
+                            {p.data.title[lang]}
+                          </a>
+                        </li>
+                      ))}
+                      {articles.map((a) => (
+                        <li>
+                          <span class="kind">{t(lang, 'skills.articles')}</span>
+                          <a href={a.data.url} target="_blank" rel="noopener">
+                            {a.data.title[lang]}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })
+    }
+  </section>
+
+</Base>
+
+<style>
+  .intro p {
+    margin: 0 0 1em;
+  }
+
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 32px;
+  }
+
+  .timeline > li {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid var(--border);
+  }
+
+  .timeline > li::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 7px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+
+  .org {
+    font-size: 1.1rem;
+    margin-top: 2px;
+  }
+
+  .role {
+    margin: 2px 0 0;
+    font-size: 0.92rem;
+  }
+
+  .summary {
+    margin: 10px 0 0;
+  }
+
+  .items {
+    list-style: none;
+    display: grid;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  h4 {
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .notes {
+    margin: 6px 0 8px;
+    padding-left: 1.2em;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  .note {
+    margin: -8px 0 20px;
+    font-size: 0.88rem;
+  }
+
+  .skill-group + .skill-group {
+    margin-top: 24px;
+  }
+
+  .cat {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--subtle);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .skills {
+    list-style: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .skills > li {
+    border-bottom: 1px solid var(--border);
+  }
+
+  summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px 12px;
+    padding: 10px 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .skill-name::before {
+    content: '+';
+    display: inline-block;
+    width: 1.2em;
+    color: var(--subtle);
+    font-family: var(--font-mono);
+  }
+
+  details[open] .skill-name::before {
+    content: '−';
+  }
+
+  .skill-name {
+    font-weight: 500;
+  }
+
+  .evidence {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .evidence-list {
+    list-style: none;
+    display: grid;
+    gap: 6px;
+    padding: 0 0 14px 1.2em;
+    font-size: 0.9rem;
+  }
+
+  .evidence-list li {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 8px;
+  }
+
+  .kind {
+    font-size: 0.78rem;
+    color: var(--subtle);
+    padding-top: 2px;
+  }
+</style>

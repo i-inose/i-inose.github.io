@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import NewsList from '../components/NewsList.astro';
+import { t, type Lang } from '../i18n/ui';
+import { getNews } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const news = await getNews();
+const description = lang === 'ja' ? '伊野瀬 出（Izuru Inose）の最近の活動。' : 'Recent activities of Izuru Inose.';
+---
+
+<Base lang={lang} path="/news/" title={t(lang, 'news.title')} description={description}>
+  <h1 class="page-title">{t(lang, 'news.title')}</h1>
+  <NewsList lang={lang} items={news} />
+</Base>

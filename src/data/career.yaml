@@ -1,0 +1,44 @@
+- id: kag
+  type: work
+  start: 2025
+  end: null
+  org: { ja: KDDIアジャイル開発センター株式会社, en: KDDI Agile Development Center Corporation }
+  role: { ja: ソフトウェアエンジニア, en: Software Engineer }
+  summary:
+    ja: すべての業務を、Claude Code を中心とした AI 駆動開発で進めている。
+    en: I carry out all of my work through AI-driven development, centered on Claude Code.
+  items:
+    - title:
+        ja: 生成AIで業務資料をレビューする、法人向けの AI エージェントサービスの開発
+        en: Development of an AI agent service for businesses that reviews business documents with generative AI
+      notes:
+        - ja: 社内向けのツールと、外部企業向けの SaaS の両方に携わる
+          en: Worked on both the internal tool and the SaaS offered to external companies
+        - ja: フロントエンドとインフラを担当
+          en: Responsible for the frontend and infrastructure
+      tech: [React, Vite, AWS, Claude]
+      skills: [react, aws, generative-ai, ai-agents, ai-driven-dev]
+    - title:
+        ja: AWS 上のデータ処理基盤の開発・運用
+        en: Development and operation of a data processing platform on AWS
+      notes:
+        - ja: 開発・検証・本番の複数の AWS アカウントにまたがる環境
+          en: Across multiple AWS accounts for development, staging, and production
+        - ja: Python で書かれたデータ処理の改修
+          en: Improved data processing written in Python
+        - ja: Terraform によるインフラのコード管理、GitHub Actions による自動テスト・自動デプロイ
+          en: Managed infrastructure as code with Terraform; automated testing and deployment with GitHub Actions
+        - ja: AWS 環境のセキュリティ改善
+          en: Improved the security of the AWS environment
+      tech: [Python, AWS, Terraform, GitHub Actions]
+      skills: [python, aws, terraform, github-actions, ai-driven-dev]
+
+- id: musashino
+  type: education
+  start: 2021
+  end: 2025
+  org: { ja: 武蔵野大学 データサイエンス学部, en: "Faculty of Data Science, Musashino University" }
+  summary:
+    ja: 武藤佳恭教授のもとで、COVID-19 に関するデータ分析の研究に取り組む。
+    en: Conducted data analysis research on COVID-19 under Prof. Yoshiyasu Takefuji.
+  items: []

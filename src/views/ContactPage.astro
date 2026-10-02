@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config/site';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const formUrl = SITE.contactFormUrl;
+const description = lang === 'ja' ? '伊野瀬 出（Izuru Inose）へのお問い合わせ。' : 'Contact Izuru Inose.';
+---
+
+<Base lang={lang} path="/contact/" title={t(lang, 'contact.title')} description={description}>
+  <h1 class="page-title">{t(lang, 'contact.title')}</h1>
+  {
+    formUrl ? (
+      <div class="card">
+        <p class="lead">{t(lang, 'contact.lead')}</p>
+        <a class="button" href={formUrl} target="_blank" rel="noopener">
+          {t(lang, 'contact.button')} ↗
+        </a>
+        <p class="hint muted">{t(lang, 'contact.external')}</p>
+      </div>
+    ) : (
+      <p class="card muted">{t(lang, 'contact.preparing')}</p>
+    )
+  }
+</Base>
+
+<style>
+  .lead {
+    margin: 0 0 20px;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+  }
+
+  .button:hover {
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .hint {
+    margin: 12px 0 0;
+    font-size: 0.85rem;
+  }
+</style>

@@ -1,0 +1,10 @@
+---
+import WritingPage from '../../views/WritingPage.astro';
+import { langPaths, type Lang } from '../../i18n/ui';
+
+export const getStaticPaths = langPaths;
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<WritingPage lang={lang} />

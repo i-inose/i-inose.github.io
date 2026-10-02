@@ -1,0 +1,34 @@
+- id: mastra-book-2026
+  type: book
+  title:
+    ja: MastraによるAIエージェント開発・運用［実践入門］
+    en: "AI Agent Development and Operations with Mastra: A Practical Introduction"
+  series: { ja: エンジニア選書, en: Engineer Selection Series }
+  authors:
+    ja: 上田瀟逸、伊野瀬出、御田稔
+    en: Shoitsu Ueda, Izuru Inose, Minoru Onda
+  venue: { ja: 技術評論社, en: "Gijutsu-Hyoron Co., Ltd." }
+  details: B5変形 / 464p
+  date: 2026-07-06
+  language: ja
+  url: https://gihyo.jp/book/2026/978-4-297-15766-1
+  isbn: 978-4-297-15766-1
+  coAuthored: true
+  skills: [mastra, ai-agents, generative-ai]
+
+# 論文は英語のまま表示する（日本語訳はしない）
+- id: covid-overdose-2024
+  type: paper
+  title:
+    ja: COVID-19’s impact on drug overdose fatalities and urgent mental health care demand in the US
+    en: COVID-19’s impact on drug overdose fatalities and urgent mental health care demand in the US
+  authors:
+    ja: Izuru Inose, Yoshiyasu Takefuji
+    en: Izuru Inose, Yoshiyasu Takefuji
+  venue: { ja: Health and Technology, en: Health and Technology }
+  details: 14(6), 1263–1266
+  date: 2024-04-25
+  language: en
+  url: https://doi.org/10.1007/s12553-024-00876-1
+  doi: 10.1007/s12553-024-00876-1
+  skills: [data-analysis]

@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import ArticleList from '../components/ArticleList.astro';
+import PublicationItem from '../components/PublicationItem.astro';
+import { t, type Lang } from '../i18n/ui';
+import { getArticles, getPublications } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const books = await getPublications('book');
+const papers = await getPublications('paper');
+const articles = await getArticles();
+
+const years = [...new Set(articles.map((a) => a.data.date.getFullYear()))];
+const description =
+  lang === 'ja'
+    ? '伊野瀬 出（Izuru Inose）の書籍・論文・記事の一覧。'
+    : 'Books, papers, and articles by Izuru Inose.';
+---
+
+<Base lang={lang} path="/writing/" title={t(lang, 'writing.title')} description={description}>
+  <h1 class="page-title">{t(lang, 'writing.title')}</h1>
+
+  <section class="section">
+    <h2 class="section-title">{t(lang, 'writing.books')}</h2>
+    <div class="stack">
+      {books.map((pub) => <PublicationItem lang={lang} pub={pub} />)}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">{t(lang, 'writing.papers')}</h2>
+    <div class="stack">
+      {papers.map((pub) => <PublicationItem lang={lang} pub={pub} />)}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">{t(lang, 'writing.articles')}</h2>
+    {lang === 'en' && <p class="note muted">{t(lang, 'writing.articlesNote')}</p>}
+    {
+      years.map((year) => (
+        <div class="year-group">
+          <h3 class="year">{year}</h3>
+          <ArticleList lang={lang} items={articles.filter((a) => a.data.date.getFullYear() === year)} />
+        </div>
+      ))
+    }
+  </section>
+</Base>
+
+<style>
+  .stack {
+    display: grid;
+    gap: 16px;
+  }
+
+  .note {
+    margin: -8px 0 16px;
+    font-size: 0.88rem;
+  }
+
+  .year-group + .year-group {
+    margin-top: 32px;
+  }
+
+  .year {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--subtle);
+    margin-bottom: 12px;
+  }
+</style>

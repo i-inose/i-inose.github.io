@@ -1,0 +1,95 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  pub: CollectionEntry<'publications'>;
+}
+
+const { lang, pub } = Astro.props;
+const d = pub.data;
+---
+
+{
+  d.type === 'book' ? (
+    <article class="card book">
+      {d.series && <p class="series">{d.series[lang]}</p>}
+      <h3 class="title">
+        <a href={d.url} target="_blank" rel="noopener">
+          {d.title[lang]}
+        </a>
+      </h3>
+      <p class="authors">{d.authors[lang]}</p>
+      <p class="meta muted">
+        {d.venue[lang]} · {formatDate(d.date, lang)}
+        {d.isbn && <> · <span class="nowrap">ISBN {d.isbn}</span></>}
+      </p>
+      <ul class="chips">
+        {d.coAuthored && <li class="chip accent">{t(lang, 'writing.coAuthor')}</li>}
+        {lang === 'en' && d.language === 'ja' && <li class="chip">{t(lang, 'writing.japanese')}</li>}
+      </ul>
+    </article>
+  ) : (
+    <article class="paper" lang="en">
+      <p class="authors">
+        {d.authors.en} ({d.date.getFullYear()}).
+      </p>
+      <h3 class="title">
+        <a href={d.url} target="_blank" rel="noopener">
+          {d.title.en}
+        </a>
+      </h3>
+      <p class="meta muted">
+        <i>{d.venue.en}</i>
+        {d.details && <>, {d.details}</>}
+        {d.doi && <> · DOI: {d.doi}</>}
+      </p>
+    </article>
+  )
+}
+
+<style>
+  .series {
+    margin: 0 0 4px;
+    font-size: 0.8rem;
+    color: var(--subtle);
+  }
+
+  .title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .paper .title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .authors {
+    margin: 6px 0 0;
+    font-size: 0.92rem;
+  }
+
+  .paper .authors {
+    margin: 0 0 2px;
+  }
+
+  .meta {
+    margin: 2px 0 0;
+    font-size: 0.88rem;
+  }
+
+  .chips {
+    margin-top: 12px;
+  }
+
+  .chips:empty {
+    display: none;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+</style>

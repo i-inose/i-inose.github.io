@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  items: CollectionEntry<'articles'>[];
+}
+
+const { lang, items } = Astro.props;
+const platformLabel = { qiita: 'Qiita', note: 'note' } as const;
+---
+
+<ul class="article-list">
+  {
+    items.map((item) => (
+      <li>
+        <a href={item.data.url} target="_blank" rel="noopener" class="title">
+          {item.data.title[lang]}
+        </a>
+        <div class="meta">
+          <time class="date" datetime={item.data.date.toISOString().slice(0, 10)}>
+            {formatDate(item.data.date, lang)}
+          </time>
+          <span class="chip">{platformLabel[item.data.platform]}</span>
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .article-list {
+    list-style: none;
+    display: grid;
+    gap: 16px;
+  }
+
+  li {
+    display: grid;
+    gap: 2px;
+  }
+
+  .title {
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+</style>

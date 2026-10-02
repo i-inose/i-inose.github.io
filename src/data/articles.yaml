@@ -1,0 +1,192 @@
+# 新しい順。featured: true にした記事はホームに表示される
+- id: qiita-40d17b62d3d4f8bd410b
+  platform: qiita
+  url: https://qiita.com/i-inose/items/40d17b62d3d4f8bd410b
+  date: 2026-05-04
+  title:
+    ja: 【レシピ本で理解する】 誰でもわかる！Github/Git 超入門 - 徹底解説（ハンズオンあり）
+    en: "Understanding Git/GitHub Through a Recipe Book: A Beginner's Guide with Hands-on"
+  skills: [git]
+
+- id: qiita-51f96dbf92dfd5799992
+  platform: qiita
+  url: https://qiita.com/i-inose/items/51f96dbf92dfd5799992
+  date: 2026-04-30
+  title:
+    ja: 【新卒・英語苦手エンジニア必見】エンジニアなら知っておきたい現場で使われる重要英単語18選 - 徹底解説
+    en: "18 Essential English Words Used at Work: For New-Grad Engineers Who Struggle with English"
+  skills: []
+
+- id: qiita-14f212258dc350857a94
+  platform: qiita
+  url: https://qiita.com/i-inose/items/14f212258dc350857a94
+  date: 2026-04-28
+  title:
+    ja: 【Claude Code入門】Skills 徹底解説 - 仕組みの解説からハンズオンまで
+    en: "Intro to Claude Code: A Deep Dive into Skills, from How They Work to Hands-on"
+  featured: true
+  skills: [ai-driven-dev]
+
+- id: qiita-e644e9b620ee1c8d3c1b
+  platform: qiita
+  url: https://qiita.com/i-inose/items/e644e9b620ee1c8d3c1b
+  date: 2026-04-21
+  title:
+    ja: 【Claude Code入門】今から追いつくClaude Code 徹底解説
+    en: "Intro to Claude Code: A Complete Guide to Catch Up Now"
+  featured: true
+  skills: [ai-driven-dev]
+
+- id: qiita-b7587aef9de82c33c5f5
+  platform: qiita
+  url: https://qiita.com/i-inose/items/b7587aef9de82c33c5f5
+  date: 2026-04-16
+  title:
+    ja: 【レストランで理解する】GitHub Actions 入門
+    en: "Understanding GitHub Actions Through a Restaurant: An Introduction"
+  skills: [github-actions]
+
+- id: qiita-0bc75c1d4f1edc401c64
+  platform: qiita
+  url: https://qiita.com/i-inose/items/0bc75c1d4f1edc401c64
+  date: 2026-04-13
+  title:
+    ja: 【建築と料理で理解する】Terraform入門
+    en: "Understanding Terraform Through Architecture and Cooking: An Introduction"
+  skills: [terraform, aws]
+
+- id: qiita-00c4de40aeeb831eec35
+  platform: qiita
+  url: https://qiita.com/i-inose/items/00c4de40aeeb831eec35
+  date: 2026-03-18
+  title:
+    ja: 【AWS AgentCoreハンズオン】'''犯人はお前だ！''' AIデバッグ刑事を15分で爆誕させよう！
+    en: "AWS AgentCore Hands-on: Build an AI Debugging Detective in 15 Minutes"
+  skills: [aws, ai-agents]
+
+- id: qiita-8809ee6aee933e803ad2
+  platform: qiita
+  url: https://qiita.com/i-inose/items/8809ee6aee933e803ad2
+  date: 2026-02-28
+  title:
+    ja: 【学校のテストで理解する】RAG入門
+    en: "Understanding RAG Through School Exams: An Introduction"
+  skills: [generative-ai]
+
+- id: qiita-78a0e86f4dd5afd61541
+  platform: qiita
+  url: https://qiita.com/i-inose/items/78a0e86f4dd5afd61541
+  date: 2026-02-15
+  title:
+    ja: 【敬語に自信のない人必見】1週間で変わった！新卒エンジニアがChatGPTを使いながら敬語を矯正した全手順
+    en: "How I, a New-Grad Engineer, Fixed My Japanese Honorifics in One Week Using ChatGPT"
+  skills: [generative-ai]
+
+- id: qiita-e21155fe84a5beb4782d
+  platform: qiita
+  url: https://qiita.com/i-inose/items/e21155fe84a5beb4782d
+  date: 2026-01-21
+  title:
+    ja: 素人質問が大好きな教授にコードレビューを頼んでみた結果
+    en: "I Asked a Professor Who Loves “Layman's Questions” to Review My Code"
+  featured: true
+  skills: [mastra, ai-agents, typescript]
+
+- id: qiita-8dae83ab75ab71b99cfd
+  platform: qiita
+  url: https://qiita.com/i-inose/items/8dae83ab75ab71b99cfd
+  date: 2025-12-04
+  title:
+    ja: 世界一性格の悪いコードレビュワーを、生成AIで召喚してみた
+    en: "I Summoned the World's Meanest Code Reviewer with Generative AI"
+  skills: [generative-ai]
+
+- id: qiita-df77aa268e948c952cb8
+  platform: qiita
+  url: https://qiita.com/i-inose/items/df77aa268e948c952cb8
+  date: 2025-10-17
+  title:
+    ja: 【たった一行だけ！】Junieを用いてAI睡眠日記アプリを爆速開発してみた！
+    en: "Just One Line! Rapidly Building an AI Sleep Diary App with Junie"
+  skills: [ai-driven-dev]
+
+- id: qiita-bf3bd17cbc6677cf6c6b
+  platform: qiita
+  url: https://qiita.com/i-inose/items/bf3bd17cbc6677cf6c6b
+  date: 2025-08-01
+  title:
+    ja: 【たった7行でAIエージェント開発！？】Mastraで英語学習AIエージェント作ってみた
+    en: "An AI Agent in Just 7 Lines? Building an English-Learning Agent with Mastra"
+  skills: [mastra, ai-agents, typescript]
+
+- id: qiita-23d068c90a32056ad8fb
+  platform: qiita
+  url: https://qiita.com/i-inose/items/23d068c90a32056ad8fb
+  date: 2025-07-17
+  title:
+    ja: 【Mastra入門】アーニャエージェントにツールを追加して強化してみた
+    en: "Intro to Mastra: Powering Up the Anya Agent with Tools"
+  skills: [mastra, ai-agents, typescript]
+
+- id: qiita-466fd69ed96c2e68a5fd
+  platform: qiita
+  url: https://qiita.com/i-inose/items/466fd69ed96c2e68a5fd
+  date: 2025-07-15
+  title:
+    ja: 【FastAPI超入門】手を動かしてクエリパラメータを学ぶ実践ハンズオン
+    en: "FastAPI for Beginners: Hands-on with Query Parameters"
+  skills: [python, fastapi]
+
+- id: qiita-6a78ae2b5eed79ef70b4
+  platform: qiita
+  url: https://qiita.com/i-inose/items/6a78ae2b5eed79ef70b4
+  date: 2025-07-03
+  title:
+    ja: 【FastAPI超入門】手を動かして学ぶ実践ハンズオン
+    en: "FastAPI for Beginners: A Practical Hands-on"
+  skills: [python, fastapi]
+
+- id: qiita-7349078a9c622270e5d8
+  platform: qiita
+  url: https://qiita.com/i-inose/items/7349078a9c622270e5d8
+  date: 2025-06-19
+  title:
+    ja: 【超簡単】Mastraでアーニャエージェントを作ってみた
+    en: "Super Easy: Building an Anya Agent with Mastra"
+  skills: [mastra, ai-agents, typescript]
+
+- id: qiita-9ed207a26eb34bad8434
+  platform: qiita
+  url: https://qiita.com/i-inose/items/9ed207a26eb34bad8434
+  date: 2025-06-18
+  title:
+    ja: 【Mastra入門】Claudeとペアプロしてみた その２（Agents・Tools総復習編）
+    en: "Intro to Mastra: Pair Programming with Claude, Part 2 (Agents & Tools Review)"
+  skills: [mastra, ai-agents, typescript]
+
+- id: qiita-0c9c066a4c78b101d83f
+  platform: qiita
+  url: https://qiita.com/i-inose/items/0c9c066a4c78b101d83f
+  date: 2025-06-11
+  title:
+    ja: 【Mastra入門】Claudeとペアプロしてみた その１（Tools編）
+    en: "Intro to Mastra: Pair Programming with Claude, Part 1 (Tools)"
+  skills: [mastra, ai-agents, typescript]
+
+- id: qiita-d790eb1ddaf85a1ac208
+  platform: qiita
+  url: https://qiita.com/i-inose/items/d790eb1ddaf85a1ac208
+  date: 2025-06-09
+  title:
+    ja: 【Mastra入門】Mastraで簡単なエージェント作ってみた（Agents編）
+    en: "Intro to Mastra: Building a Simple Agent (Agents)"
+  skills: [mastra, ai-agents, typescript]
+
+- id: qiita-34ffa9872cde26ab7787
+  platform: qiita
+  url: https://qiita.com/i-inose/items/34ffa9872cde26ab7787
+  date: 2025-06-06
+  title:
+    ja: 【Mastra入門】新卒エンジニアがMastra触ってみた
+    en: "Intro to Mastra: A New-Grad Engineer Tries Mastra"
+  skills: [mastra, ai-agents, typescript]

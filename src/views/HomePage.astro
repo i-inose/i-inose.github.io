@@ -1,0 +1,141 @@
+---
+import Base from '../layouts/Base.astro';
+import NewsList from '../components/NewsList.astro';
+import ArticleList from '../components/ArticleList.astro';
+import PublicationItem from '../components/PublicationItem.astro';
+import { SITE, LINKS } from '../config/site';
+import { PROFILE } from '../config/profile';
+import { localePath, t, type Lang } from '../i18n/ui';
+import { getArticles, getNews, getPublications } from '../lib/data';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const otherLang: Lang = lang === 'ja' ? 'en' : 'ja';
+const news = (await getNews()).slice(0, 3);
+const books = await getPublications('book');
+const featured = (await getArticles()).filter((a) => a.data.featured);
+const primaryLinks = LINKS.filter((l) => l.group !== 'personal');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.name.en,
+  alternateName: SITE.name.ja,
+  jobTitle: SITE.role,
+  url: SITE.url,
+  worksFor: { '@type': 'Organization', name: 'KDDI Agile Development Center Corporation' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Musashino University' },
+  knowsAbout: PROFILE.focus.map((f) => f.en),
+  sameAs: LINKS.map((l) => l.url),
+};
+---
+
+<Base lang={lang} path="/" description={PROFILE.description[lang]} jsonLd={jsonLd}>
+  <section class="hero">
+    <p class="role">{SITE.role}</p>
+    <h1>
+      {SITE.name[lang]}
+      <span class="alt" lang={otherLang}>{SITE.name[otherLang]}</span>
+    </h1>
+    <p class="lead">{PROFILE.lead[lang]}</p>
+    <div class="focus">
+      <span class="focus-label">{t(lang, 'home.focus')}</span>
+      <ul class="chips">
+        {PROFILE.focus.map((f) => <li class="chip accent">{f[lang]}</li>)}
+      </ul>
+    </div>
+    <ul class="hero-links">
+      {
+        primaryLinks.map((l) => (
+          <li>
+            <a href={l.url} target="_blank" rel="me noopener">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">{t(lang, 'home.featured')}</h2>
+    {books.map((pub) => <PublicationItem lang={lang} pub={pub} />)}
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">{t(lang, 'home.news')}</h2>
+    <NewsList lang={lang} items={news} />
+    <a class="more" href={localePath(lang, '/news/')}>{t(lang, 'home.moreNews')} →</a>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">{t(lang, 'home.articles')}</h2>
+    {lang === 'en' && <p class="note muted">{t(lang, 'writing.articlesNote')}</p>}
+    <ArticleList lang={lang} items={featured} />
+    <a class="more" href={localePath(lang, '/writing/')}>{t(lang, 'home.moreWriting')} →</a>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding: 16px 0 8px;
+  }
+
+  .role {
+    margin: 0 0 8px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.6rem);
+    letter-spacing: 0.02em;
+  }
+
+  .alt {
+    display: block;
+    margin-top: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  .lead {
+    margin: 20px 0 0;
+    font-size: 1.05rem;
+    max-width: 36rem;
+  }
+
+  .focus {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .focus-label {
+    font-size: 0.8rem;
+    color: var(--subtle);
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    list-style: none;
+    margin-top: 24px;
+    font-size: 0.95rem;
+  }
+
+  .note {
+    margin: -8px 0 16px;
+    font-size: 0.88rem;
+  }
+</style>

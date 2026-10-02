@@ -1,0 +1,7 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+
+# ホームの ~/node_modules にある古い cookie をビルド時に拾わないよう、プロジェクト直下に置く
+publicHoistPattern:
+  - cookie

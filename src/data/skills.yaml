@@ -1,0 +1,40 @@
+# category: ai / dev / cloud / data
+- id: generative-ai
+  label: { ja: 生成AI・LLM, en: Generative AI / LLM }
+  category: ai
+- id: ai-agents
+  label: { ja: AIエージェント, en: AI Agents }
+  category: ai
+- id: mastra
+  label: { ja: Mastra, en: Mastra }
+  category: ai
+- id: ai-driven-dev
+  label: { ja: AI駆動開発, en: AI-Driven Development }
+  category: ai
+- id: typescript
+  label: { ja: TypeScript, en: TypeScript }
+  category: dev
+- id: react
+  label: { ja: React / Vite, en: React / Vite }
+  category: dev
+- id: python
+  label: { ja: Python, en: Python }
+  category: dev
+- id: fastapi
+  label: { ja: FastAPI, en: FastAPI }
+  category: dev
+- id: git
+  label: { ja: Git / GitHub, en: Git / GitHub }
+  category: dev
+- id: aws
+  label: { ja: AWS, en: AWS }
+  category: cloud
+- id: terraform
+  label: { ja: Terraform, en: Terraform }
+  category: cloud
+- id: github-actions
+  label: { ja: GitHub Actions, en: GitHub Actions }
+  category: cloud
+- id: data-analysis
+  label: { ja: データ分析, en: Data Analysis }
+  category: data

@@ -1,0 +1,145 @@
+---
+import { SITE } from '../config/site';
+import { localePath, t, type Lang, type UIKey } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+const otherLang: Lang = lang === 'ja' ? 'en' : 'ja';
+
+const nav: { key: UIKey; path: string }[] = [
+  { key: 'nav.home', path: '/' },
+  { key: 'nav.about', path: '/about/' },
+  { key: 'nav.writing', path: '/writing/' },
+  { key: 'nav.news', path: '/news/' },
+  { key: 'nav.contact', path: '/contact/' },
+];
+---
+
+<header class="site-header">
+  <div class="container inner">
+    <a class="site-name" href={localePath(lang, '/')}>{SITE.name[lang]}</a>
+    <a
+      class="lang-switch"
+      href={localePath(otherLang, path)}
+      hreflang={otherLang}
+      lang={otherLang}
+      aria-label={t(lang, 'lang.switchLabel')}
+    >
+      {t(lang, 'lang.switch')}
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={localePath(lang, item.path)} aria-current={item.path === path ? 'page' : undefined}>
+                {t(lang, item.key)}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'name lang'
+      'nav nav';
+    align-items: center;
+    row-gap: 4px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+  }
+
+  .site-name {
+    grid-area: name;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .site-name:hover {
+    text-decoration: none;
+  }
+
+  .lang-switch {
+    grid-area: lang;
+    font-size: 0.85rem;
+    padding: 2px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+  }
+
+  .lang-switch:hover {
+    color: var(--text);
+    border-color: var(--subtle);
+    text-decoration: none;
+  }
+
+  .site-nav {
+    grid-area: nav;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  .site-nav a {
+    display: inline-block;
+    padding: 6px 0;
+    font-size: 0.88rem;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-nav a:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .site-nav a[aria-current='page'] {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+
+  @media (min-width: 720px) {
+    .inner {
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: 'name nav lang';
+      column-gap: 32px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .site-nav ul {
+      justify-content: flex-end;
+      column-gap: 20px;
+    }
+
+    .site-nav a {
+      font-size: 0.92rem;
+    }
+  }
+</style>

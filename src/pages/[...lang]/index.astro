@@ -1,0 +1,10 @@
+---
+import HomePage from '../../views/HomePage.astro';
+import { langPaths, type Lang } from '../../i18n/ui';
+
+export const getStaticPaths = langPaths;
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<HomePage lang={lang} />

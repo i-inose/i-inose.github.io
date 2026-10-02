@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { localePath, t } from '../i18n/ui';
+---
+
+<Base lang="ja" path="/404/" title={t('ja', 'notFound.title')} description={t('ja', 'notFound.title')}>
+  <h1 class="page-title">{t('ja', 'notFound.title')}</h1>
+  <p lang="en" class="muted">{t('en', 'notFound.title')}</p>
+  <p>
+    <a href={localePath('ja', '/')}>{t('ja', 'notFound.back')}</a> ·
+    <a href={localePath('en', '/')} lang="en">{t('en', 'notFound.back')}</a>
+  </p>
+</Base>
